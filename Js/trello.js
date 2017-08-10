@@ -7,50 +7,32 @@ Input.onclick = function () {
     inputText.setAttribute("placeholder", "Ingresa el nombre de la lista");
     grupoLi.appendChild(inputText);
   var btn = document.createElement("BUTTON");
-    var t = document.createTextNode("Guardar Lista");
+    var t = document.createTextNode("Guardar");
     btn.setAttribute("id","btnSaveList");
     btn.appendChild(t);
-    document.body.appendChild(btn);
+    grupoLi.appendChild(btn);
     btnSaveList.onclick = function () {
-      var li = document.createElement("li");
-      var lista = document.getElementById("addText").value;
-      var ntext = document.createTextNode(lista);
-      li.appendChild(ntext);
-      if (lista === "") {
+      var divTabla = document.getElementById("lista-tarea");
+      var titleList=document.getElementById("addText").value;
+      var title = document.createElement("p");
+      title.setAttribute("class","title");
+      title.setAttribute("contenteditable","")
+      var ntext = document.createTextNode(titleList);
+      title.appendChild(ntext);
+      if (titleList === "") {
         alert("No has escrito nada!");
       } else {
-        document.getElementById("nameList").appendChild(li);
+        document.getElementById("lista-tarea").appendChild(title);
       }
       document.getElementById("addText").value = "";
+      //crear lista
+      var lista = document.getElementById("card");
+      var ul = document.createElement("ul");
+      var li = document.createElement("li");
+      li.setAttribute("class","card1");
+      li.setAttribute("contenteditable","");
+      var liText = document.createTextNode(li);
+      ul.appendChild(li);
+      lista.appendChild(ul);
     }
 }
-/*
-// Añadir un elemento desde el input
-function addInput() {
-  var li = document.createElement("li");
-  var toDo = document.getElementById("newInput").value;
-  var ntext = document.createTextNode(toDo);
-  li.appendChild(ntext);
-  if (lista === "") {
-    alert("No has escrito nada!");
-  } else {
-    document.getElementById("nameList").appendChild(li);
-  }
-  document.getElementById("addText").value = "";
-
-  var span = document.createElement("SPAN");
-  var x = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(x);
-  li.appendChild(span);
-
-  for (i = 0; i < borrar.length; i++) {
-    borrar[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-  tasks.push(toDo);
-}
-
-*/
