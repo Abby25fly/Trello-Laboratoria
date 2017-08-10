@@ -1,56 +1,48 @@
 
 Input.onclick = function () {
   var grupoLi = document.getElementById("grupoLista");
+  // crea Input inicial
   var inputText = document.createElement("INPUT");
     inputText.setAttribute("type", "text");
     inputText.setAttribute("id", "addText");
     inputText.setAttribute("placeholder", "Ingresa el nombre de la lista");
     grupoLi.appendChild(inputText);
+  // Crea btn de guardar lista
   var btn = document.createElement("BUTTON");
-    var t = document.createTextNode("Guardar Lista");
+    var t = document.createTextNode("Guardar");
     btn.setAttribute("id","btnSaveList");
     btn.appendChild(t);
-    document.body.appendChild(btn);
-    btnSaveList.onclick = function () {
-      var li = document.createElement("li");
-      var lista = document.getElementById("addText").value;
-      var ntext = document.createTextNode(lista);
-      li.appendChild(ntext);
-      if (lista === "") {
-        alert("No has escrito nada!");
-      } else {
-        document.getElementById("nameList").appendChild(li);
-      }
-      document.getElementById("addText").value = "";
+    grupoLi.appendChild(btn);
+  // funcion que genera la lista y tarjetas
+  btnSaveList.onclick= function() {
+    var allList = document.getElementById("tarea");
+    var divTabla = document.getElementById("lista-tarea");
+    var titleList=document.getElementById("addText").value;
+    var title = document.createElement("p");
+    title.setAttribute("class","title");
+    title.setAttribute("contenteditable","")
+    var ntext = document.createTextNode(titleList);
+    title.appendChild(ntext);
+    if (titleList === "") {
+      alert("No has escrito nada!");
+    } else {
+      divTabla.appendChild(title);
     }
-}
-/*
-// Añadir un elemento desde el input
-function addInput() {
-  var li = document.createElement("li");
-  var toDo = document.getElementById("newInput").value;
-  var ntext = document.createTextNode(toDo);
-  li.appendChild(ntext);
-  if (lista === "") {
-    alert("No has escrito nada!");
-  } else {
-    document.getElementById("nameList").appendChild(li);
-  }
-  document.getElementById("addText").value = "";
+    document.getElementById("addText").value = "";
 
-  var span = document.createElement("SPAN");
-  var x = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(x);
-  li.appendChild(span);
-
-  for (i = 0; i < borrar.length; i++) {
-    borrar[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
+    // crear boton - agregar tarea
+    var tarjeta = document.getElementById("card");
+    var btnTarea = document.createElement("BUTTON");
+    var btnText = document.createTextNode("Agregar tarea");
+    btnTarea.setAttribute("id","btnAdd");
+    btnTarea.appendChild(btnText);
+    tarjeta.appendChild(btnTarea);
+    // crear text-area
+    btnAdd.onclick = function () {
+      var addTask = document.createElement("TEXTAREA");
+      var taskText = document.createTextNode("Añadir una tarea...");
+    addTask.appendChild(taskText);
+    tarjeta.appendChild(addTask);
     }
   }
-  tasks.push(toDo);
 }
-
-*/
